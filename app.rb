@@ -6,18 +6,18 @@ It's Halloween time! 🎃
 Can you debug these classes in time to throw a spooky party? 👻
 
 Expected output:
-Preparing a 4-room haunted house
-Haunted house with 4 rooms and 0 decorations
+Preparing a 5-room haunted house
+Haunted house with 5 rooms and 0 decorations
 Adding decorations...
-Haunted house with 4 rooms and 20 decorations
+Haunted house with 5 rooms and 25 decorations
 Turning on the spooky lights...
-Haunted house with 4 rooms, 20 decorations, and spooky lights on
+Haunted house with 5 rooms, 25 decorations, and spooky lights on
 Inviting 3 guests to the party
 Guest: John, dressed as Vampire
 Guest: Alice, dressed as Witch
 Guest: Bob, dressed as Ghost
 Turning off the spooky lights...
-Haunted house with 4 rooms, 20 decorations, and spooky lights off
+Haunted house with 5 rooms, 25 decorations, and spooky lights off
 
 =end
 
@@ -35,19 +35,15 @@ class HauntedHouse
   end
 
   def lights_status
-    if @spooky_lights
-      "spooky lights on"
-    else
-      "spooky lights off"
-    end
+    @spooky_lights ? "spooky lights on" : "spooky lights off"
   end
 
   def to_s
     if @spooky_lights.nil?
-      "Haunted house with #{@rooms} rooms, and #{@decorations} decorations"
+      "Haunted house with #{@rooms} rooms and #{@decorations} decorations"
     elsif @spooky_lights
       "Haunted house with #{@rooms} rooms, #{@decorations} decorations, and #{lights_status}"
-    else 
+    else
       "Haunted house with #{@rooms} rooms, #{@decorations} decorations, and #{lights_status}"
     end
   end
@@ -61,11 +57,11 @@ class HauntedHouse
   end
 
   def self.throw_party(rooms, guests)
-    haunted_house = HauntedHouse.new(rooms)
+    haunted_house = new(rooms)
     puts "Preparing a #{rooms}-room haunted house"
     puts haunted_house.to_s
     puts "Adding decorations..."
-    haunted_house.add_decorations(20)
+    haunted_house.add_decorations(rooms * 5)
     puts haunted_house.to_s
     puts "Turning on the spooky lights..."
     haunted_house.turn_on_lights
@@ -103,4 +99,4 @@ guests = [
   Guest.new("Bob", "Ghost")
 ]
 
-HauntedHouse.throw_party(4, guests)
+HauntedHouse.throw_party(5, guests)
