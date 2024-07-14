@@ -26,8 +26,8 @@ class HauntedHouse
 
   def initialize(rooms)
     @rooms = rooms
-    @decoration = 0
-    @spooky_lights = false
+    @decorations = 0
+    @spooky_lights = nil
   end
 
   def add_decorations(count)
@@ -43,7 +43,13 @@ class HauntedHouse
   end
 
   def to_s
-    "Haunted house with #{@rooms} rooms, #{@decorations} decorations, and #{lights_status}"
+    if @spooky_lights.nil?
+      "Haunted house with #{@rooms} rooms, and #{@decorations} decorations"
+    elsif @spooky_lights
+      "Haunted house with #{@rooms} rooms, #{@decorations} decorations, and #{lights_status}"
+    else 
+      "Haunted house with #{@rooms} rooms, #{@decorations} decorations, and #{lights_status}"
+    end
   end
 
   def turn_on_lights
